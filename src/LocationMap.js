@@ -76,7 +76,6 @@ class LocationMap extends Component {
     return (
       <div className='LocationMap'>
         <div className='filters'>
-              <FontAwesome name='heart' />
           <FontAwesome className='category-selector' name='shopping-cart' size='3x' />
           <FontAwesome className='category-selector' name='cutlery' size='3x' />
           <FontAwesome className='category-selector' name='bed' size='3x' />

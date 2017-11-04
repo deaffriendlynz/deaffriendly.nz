@@ -1,16 +1,18 @@
-export function saveLocation(place, latlng) {
-  let locations = JSON.parse(window.localStorage.getItem('locations')) || []
-  if (locations.find(loc => loc.place_id === place.place_id)) {return}
+import firebase from './config/firebase'
+
+export async function saveLocation(place, latlng) {
+  let ref = firebase.database().ref('locations')
+  let existing = await ref.orderByChild('place_id').equalTo(place.place_id).once('value')
+  if (existing.numChildren()) return
   let location = {
     place_id: place.place_id,
     name: place.name,
-    phone: place.international_phone_number,
-    website: place.website,
-    icon: place.icon,
+    phone: place.international_phone_number || '',
+    website: place.website || '',
     latlng
   }
-  locations.push(location)
-  window.localStorage.setItem('locations', JSON.stringify(locations))
+  console.log(location)
+  ref.push(location).then(console.log).catch(console.log)
 }
 
 export function locationsFromStorage() {
