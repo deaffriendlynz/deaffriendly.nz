@@ -4,6 +4,8 @@ import { GoogleMap, Marker, withGoogleMap} from "react-google-maps"
 import {InfoBox} from 'react-google-maps/lib/components/addons/InfoBox'
 import {locationsFromStorage} from './utils'
 import './LocationMap.css'
+import heart from './heart-24.png'
+import FontAwesome from 'react-fontawesome'
 
 class LocationMap extends Component {
   constructor(props) {
@@ -57,13 +59,29 @@ class LocationMap extends Component {
           defaultCenter={this.state.props.center}
           defaultZoom={this.state.props.zoom}
         >
-        {this.locations.map((loc,i) => <Marker key={i} position={{lat:loc.latlng.lat, lng: loc.latlng.lng}} onClick={e => showInfo(loc)} title={loc.name} />)}
+        {this.locations.map((loc,i) => {
+          return(
+            <Marker
+              key={i}
+              position={{lat:loc.latlng.lat, lng: loc.latlng.lng}}
+              icon={heart}
+              onClick={e => showInfo(loc)} title={loc.name}
+            />
+          )
+          })}
         {this.infoBox()}
         </GoogleMap>
       )
     }
     return (
       <div className='LocationMap'>
+        <div className='filters'>
+              <FontAwesome name='heart' />
+          <FontAwesome className='category-selector' name='shopping-cart' size='3x' />
+          <FontAwesome className='category-selector' name='cutlery' size='3x' />
+          <FontAwesome className='category-selector' name='bed' size='3x' />
+        </div>
+
         {Map ? <Map
             containerElement={<div style={{ height: `400px` }} />}
             mapElement={<div style={{ height: `100%` }} />}

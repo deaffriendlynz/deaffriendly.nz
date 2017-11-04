@@ -1,3 +1,17 @@
 .LocationMap {
   margin-top: 20px;
 }
+
+.LocationMap .filters {
+  margin-bottom: 20px;
+}
+
+.category-selector {
+  cursor: pointer;
+  color: #2387C2;
+  margin-right: 40px;
+}
+
+.category-selector:hover {
+  color: #005596;
+}

@@ -2,11 +2,12 @@
   "name": "deaffriendly.nz",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://deaffriendlynz.github.io/deaffriendly.nz/",
+  "homepage": "https://nzsl-friendly.github.io/deaffriendly.nz/",
   "dependencies": {
     "google-map-react": "^0.25.0",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
+    "react-fontawesome": "^1.6.1",
     "react-google-maps": "^9.2.2",
     "react-places-autocomplete": "^5.4.3",
     "react-scripts": "1.0.17"
