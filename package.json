@@ -2,7 +2,7 @@
   "name": "deaffriendly.nz",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://deaffriendlynz.github.io/deaffriendly.nz/",
+  "homepage": "https://deaffriendlynz.github.io/deaffriendly.nz/",
   "dependencies": {
     "google-map-react": "^0.25.0",
     "react": "^16.0.0",
