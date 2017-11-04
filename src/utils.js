@@ -11,8 +11,7 @@ export async function saveLocation(place, latlng) {
     website: place.website || '',
     latlng
   }
-  console.log(location)
-  ref.push(location).then(console.log).catch(console.log)
+  ref.push(location)
 }
 
 export async function locationsFromStorage() {
@@ -24,6 +23,5 @@ export async function locationsFromStorage() {
     location.firebaseId = id
     locations.push(location)
   }
-  console.log(locations)
   return locations
 }
