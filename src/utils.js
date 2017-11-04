@@ -12,3 +12,7 @@ export function saveLocation(place, latlng) {
   locations.push(location)
   window.localStorage.setItem('locations', JSON.stringify(locations))
 }
+
+export function locationsFromStorage() {
+  return JSON.parse(window.localStorage.getItem('locations')) || []
+}
