@@ -15,6 +15,15 @@ export async function saveLocation(place, latlng) {
   ref.push(location).then(console.log).catch(console.log)
 }
 
-export function locationsFromStorage() {
-  return JSON.parse(window.localStorage.getItem('locations')) || []
+export async function locationsFromStorage() {
+  let ref = firebase.database().ref('locations')
+  let res = (await ref.once('value')).toJSON()
+  let locations = []
+  for(let id in res){
+    let location = res[id]
+    location.firebaseId = id
+    locations.push(location)
+  }
+  console.log(locations)
+  return locations
 }

@@ -10,6 +10,20 @@ import FontAwesome from 'react-fontawesome'
 class LocationMap extends Component {
   constructor(props) {
     super(props)
+    this.state = {
+      showMap: false,
+      showLocation: false,
+      locations: []
+    }
+    this.setLocation()
+    this.loadLocations()
+  }
+  loadLocations() {
+    locationsFromStorage().then((locations) => {
+      this.setState({locations})
+    })
+  }
+  setLocation() {
     navigator.geolocation.getCurrentPosition((position) => {
       this.setState({props: {
         center: {
@@ -21,11 +35,6 @@ class LocationMap extends Component {
         showMap: true
       })
     })
-    this.locations = locationsFromStorage()
-    this.state = {
-      showMap: false,
-      showLocation: false
-    }
   }
   showLocation(place_id) {
     this.setState({showLocation: this.locations.find(loc => loc.place_id === place_id)})
@@ -59,7 +68,7 @@ class LocationMap extends Component {
           defaultCenter={this.state.props.center}
           defaultZoom={this.state.props.zoom}
         >
-        {this.locations.map((loc,i) => {
+        {this.state.locations.map((loc,i) => {
           return(
             <Marker
               key={i}
