@@ -2,7 +2,7 @@
   "name": "deaffriendly.nz",
   "version": "0.1.0",
   "private": true,
-  "homepage": "http://nzslfriendly.org",
+  "homepage": "https://nzsl-friendly.github.io/nzslfriendly.org/",
   "dependencies": {
     "firebase": "^4.6.1",
     "google-map-react": "^0.25.0",
