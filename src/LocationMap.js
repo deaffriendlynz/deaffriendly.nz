@@ -7,12 +7,19 @@ import './LocationMap.css'
 import heart from './heart-24.png'
 import FontAwesome from 'react-fontawesome'
 
+const filters = [
+  {name: 'shopping-cart', title: 'Shopping', code: 'shopping'},
+  {name: 'cutlery', title: 'Eating Out', code: 'eating-out'},
+  {name: 'bed', title: 'Accommodation', code: 'accommodation'},
+  {name: 'signing', title: 'All', code: 'all'}
+]
 class LocationMap extends Component {
   constructor(props) {
     super(props)
     this.state = {
       showMap: false,
       showLocation: false,
+      filter: 'all',
       locations: []
     }
     this.setLocation()
@@ -60,16 +67,33 @@ class LocationMap extends Component {
       }
     return locationInfo
   }
-  render() {
-    let Map
+
+  filterButton(filter) {
+    let className = 'category-selector'
+    if (filter.code === this.state.filter) {
+      className += ' selected'
+    }
+    return <FontAwesome
+              key={filter.code}
+              className={className}
+              onClick={() => this.setState({filter: filter.code})}
+              name={filter.name}
+              title={filter.title}
+              size='3x' />
+  }
+
+  googleMap() {
     let showInfo = (loc) => this.setState({showLocation: loc})
-    if (this.state.showMap) {
-      Map = withGoogleMap(props =>
-        <GoogleMap
-          defaultCenter={this.state.props.center}
-          defaultZoom={this.state.props.zoom}
-        >
-        {this.state.locations.map((loc,i) => {
+    return withGoogleMap(props =>
+      <GoogleMap
+        defaultCenter={this.state.props.center}
+        defaultZoom={this.state.props.zoom}
+      >
+      {this.state.locations
+        .filter(loc => {
+          return this.state.filter === 'all' || this.state.filter === loc.category
+        })
+        .map((loc,i) => {
           return(
             <Marker
               key={i}
@@ -78,21 +102,21 @@ class LocationMap extends Component {
               onClick={e => showInfo(loc)} title={loc.name}
             />
           )
-          })}
-        {this.infoBox()}
-        </GoogleMap>
-      )
-    }
+        })}
+      {this.infoBox()}
+      </GoogleMap>
+    )
+  }
+
+  render() {
+    let Map = this.googleMap()
     return (
       <div className='LocationMap'>
         <div className='filters'>
-          <FontAwesome className='category-selector' name='shopping-cart' title='Shopping' size='3x' />
-          <FontAwesome className='category-selector' name='cutlery' title='Eating Out' size='3x' />
-          <FontAwesome className='category-selector' name='bed' title='Accommodation' size='3x' />
-          <FontAwesome className='category-selector' name='signing' title='All' size='3x' />
+          {filters.map(filter => this.filterButton(filter))}
         </div>
 
-        {Map ? <Map
+        {this.state.showMap ? <Map
             containerElement={<div style={{ height: `400px` }} />}
             mapElement={<div style={{ height: `100%` }} />}
           /> : ''}

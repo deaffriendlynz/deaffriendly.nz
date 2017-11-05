@@ -7,6 +7,7 @@
 }
 
 .category-selector {
+  padding: 5px;
   cursor: pointer;
   color: #2387C2;
   margin-right: 40px;
@@ -14,4 +15,8 @@
 
 .category-selector:hover {
   color: #005596;
+}
+
+.category-selector.selected {
+  border: 1px solid #2387C2;
 }
