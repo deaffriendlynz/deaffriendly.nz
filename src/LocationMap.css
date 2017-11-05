@@ -15,7 +15,8 @@
   padding: 5px;
   cursor: pointer;
   color: #2387C2;
-  margin-right: 40px;
+  margin-right: 20px;
+  margin-left: 15px;
 }
 
 .category-selector:hover {

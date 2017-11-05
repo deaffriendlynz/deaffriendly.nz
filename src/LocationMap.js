@@ -2,6 +2,8 @@
 import React, { Component } from 'react'
 import { GoogleMap, Marker, withGoogleMap} from "react-google-maps"
 import {InfoBox} from 'react-google-maps/lib/components/addons/InfoBox'
+import FontAwesome from 'react-fontawesome'
+
 import {locationsFromStorage, listenForLocations} from './utils'
 import './LocationMap.css'
 import heart from './heart-24.png'
@@ -53,9 +55,9 @@ class LocationMap extends Component {
         locationInfo = <InfoBox
             defaultPosition={ new google.maps.LatLng(lat, lng) }
             options={{ closeBoxURL: ``, enableEventPropagation: true }}
-            onCloseClick={e => console.log}
           >
               <div className='infoBox'>
+                <div id='close'><FontAwesome name='times' onClick={() => this.setState({showLocation: ''})} style={{cursor: 'pointer', float:'right', color: '#999'}}/></div>
                 <div>{loc.name}</div>
                 <div>{loc.address}</div>
                 <div>{loc.phone}</div>
