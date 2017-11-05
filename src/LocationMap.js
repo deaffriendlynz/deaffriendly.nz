@@ -2,7 +2,7 @@
 import React, { Component } from 'react'
 import { GoogleMap, Marker, withGoogleMap} from "react-google-maps"
 import {InfoBox} from 'react-google-maps/lib/components/addons/InfoBox'
-import {locationsFromStorage} from './utils'
+import {locationsFromStorage, listenForLocations} from './utils'
 import './LocationMap.css'
 import heart from './heart-24.png'
 import FontAwesome from 'react-fontawesome'
@@ -22,6 +22,7 @@ class LocationMap extends Component {
     locationsFromStorage().then((locations) => {
       this.setState({locations})
     })
+    listenForLocations(locations => this.setState({locations}))
   }
   setLocation() {
     navigator.geolocation.getCurrentPosition((position) => {
@@ -85,9 +86,10 @@ class LocationMap extends Component {
     return (
       <div className='LocationMap'>
         <div className='filters'>
-          <FontAwesome className='category-selector' name='shopping-cart' size='3x' />
-          <FontAwesome className='category-selector' name='cutlery' size='3x' />
-          <FontAwesome className='category-selector' name='bed' size='3x' />
+          <FontAwesome className='category-selector' name='shopping-cart' title='Shopping' size='3x' />
+          <FontAwesome className='category-selector' name='cutlery' title='Eating Out' size='3x' />
+          <FontAwesome className='category-selector' name='bed' title='Accommodation' size='3x' />
+          <FontAwesome className='category-selector' name='signing' title='All' size='3x' />
         </div>
 
         {Map ? <Map

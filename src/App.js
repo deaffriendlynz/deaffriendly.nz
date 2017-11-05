@@ -14,8 +14,8 @@ class App extends Component {
         <p className="App-intro">
 
         </p>
-        <AddLocation />
         <LocationMap />
+        <AddLocation />
       </div>
     );
   }
