@@ -6,6 +6,11 @@
   margin-bottom: 20px;
 }
 
+.LocationMap .infoBox {
+  background-color: white;
+  padding: 5px;
+}
+
 .category-selector {
   padding: 5px;
   cursor: pointer;

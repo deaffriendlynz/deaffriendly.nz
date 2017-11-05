@@ -8,6 +8,8 @@ export async function saveLocation(place, latlng, category) {
   let location = {
     place_id: place.place_id,
     name: place.name,
+    address: place.formatted_address,
+    url: place.url,
     category,
     phone: place.international_phone_number || '',
     website: place.website || '',

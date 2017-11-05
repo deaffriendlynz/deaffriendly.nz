@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import AddLocation from './AddLocation'
-import LocationMap from './LocationMap'
+import FilteredMap from './FilteredMap'
 import './App.css';
 import logo from './nzsl-friendly-logo.png'
 
@@ -14,7 +14,7 @@ class App extends Component {
         <p className="App-intro">
 
         </p>
-        <LocationMap />
+        <FilteredMap />
         <AddLocation />
       </div>
     );
